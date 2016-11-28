@@ -16,7 +16,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds] ];
+    [self customizeAppearance];
     self.searchViewController=[[SearchViewController alloc]initWithNibName:@"SearchViewController" bundle:nil];
     self.window.rootViewController=self.searchViewController;
     [self.window makeKeyAndVisible];
@@ -24,6 +26,14 @@
     return YES;
 }
 
+-(void)customizeAppearance{
+   /* UIColor *barTintColor = [UIColor colorWithRed:20/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
+    [[UISearchBar appearance] setBarTintColor:barTintColor];
+    self.window.tintColor = [UIColor colorWithRed:10/255.0f green:80/255.0f blue:80/255.0f alpha:1.0f];*/
+    UIColor*barColor=[UIColor colorWithRed:20/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
+    [[UISearchBar appearance]setBarTintColor:barColor];
+    self.window.tintColor=[UIColor colorWithRed:10/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

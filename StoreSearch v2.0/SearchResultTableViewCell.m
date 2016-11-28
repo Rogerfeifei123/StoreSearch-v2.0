@@ -12,7 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    UIView*selectView=[[UIView alloc] initWithFrame:CGRectZero];
+    selectView.backgroundColor=[UIColor colorWithRed:20/255.0f green:160/255.0f blue:160/255.0f alpha:0.5f];
+    self.selectedBackgroundView=selectView;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
