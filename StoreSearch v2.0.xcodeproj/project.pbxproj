@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		442F66021DED53A000DA5216 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442F66011DED53A000DA5216 /* LoadingCell.xib */; };
 		4444CC271DEA663D00983B99 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4444CC261DEA663D00983B99 /* SearchResultCell.xib */; };
 		4444CC291DEA6AD800983B99 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4444CC281DEA6AD800983B99 /* NothingFoundCell.xib */; };
 		4444CC2C1DEA6E6E00983B99 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4444CC2B1DEA6E6E00983B99 /* SearchResultTableViewCell.m */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		442F66011DED53A000DA5216 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		4444CC261DEA663D00983B99 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		4444CC281DEA6AD800983B99 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		4444CC2A1DEA6E6E00983B99 /* SearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTableViewCell.h; sourceTree = "<group>"; };
@@ -93,6 +95,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		444083831DEDB0020041F9C6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44B98C1A1DE7DF1A00C98677 /* SearchResult.h */,
+				44B98C1B1DE7DF1A00C98677 /* SearchResult.m */,
+				44B98BEB1DE7D44700C98677 /* StoreSearch_v2_0.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		444083841DEDB0310041F9C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				44B98C171DE7D4E600C98677 /* SearchViewController.xib */,
+				442F66011DED53A000DA5216 /* LoadingCell.xib */,
+				4444CC261DEA663D00983B99 /* SearchResultCell.xib */,
+				4444CC281DEA6AD800983B99 /* NothingFoundCell.xib */,
+				44B98BF01DE7D44700C98677 /* LaunchScreen.storyboard */,
+				44B98BEE1DE7D44700C98677 /* Assets.xcassets */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		444083851DEDB4B10041F9C6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				44B98C151DE7D4E600C98677 /* SearchViewController.h */,
+				44B98C161DE7D4E600C98677 /* SearchViewController.m */,
+				4444CC2A1DEA6E6E00983B99 /* SearchResultTableViewCell.h */,
+				4444CC2B1DEA6E6E00983B99 /* SearchResultTableViewCell.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		44B98BD31DE7D44700C98677 = {
 			isa = PBXGroup;
 			children = (
@@ -118,21 +154,12 @@
 			children = (
 				44B98BE21DE7D44700C98677 /* AppDelegate.h */,
 				44B98BE31DE7D44700C98677 /* AppDelegate.m */,
-				44B98C151DE7D4E600C98677 /* SearchViewController.h */,
-				44B98C161DE7D4E600C98677 /* SearchViewController.m */,
-				4444CC261DEA663D00983B99 /* SearchResultCell.xib */,
-				4444CC2A1DEA6E6E00983B99 /* SearchResultTableViewCell.h */,
-				4444CC2B1DEA6E6E00983B99 /* SearchResultTableViewCell.m */,
-				4444CC281DEA6AD800983B99 /* NothingFoundCell.xib */,
-				44B98C1A1DE7DF1A00C98677 /* SearchResult.h */,
-				44B98C1B1DE7DF1A00C98677 /* SearchResult.m */,
-				44B98C171DE7D4E600C98677 /* SearchViewController.xib */,
+				444083831DEDB0020041F9C6 /* Model */,
+				444083841DEDB0310041F9C6 /* View */,
+				444083851DEDB4B10041F9C6 /* Controller */,
 				44B98BE51DE7D44700C98677 /* ViewController.h */,
 				44B98BE61DE7D44700C98677 /* ViewController.m */,
-				44B98BEE1DE7D44700C98677 /* Assets.xcassets */,
-				44B98BF01DE7D44700C98677 /* LaunchScreen.storyboard */,
 				44B98BF31DE7D44700C98677 /* Info.plist */,
-				44B98BEB1DE7D44700C98677 /* StoreSearch_v2_0.xcdatamodeld */,
 				44B98BDF1DE7D44700C98677 /* Supporting Files */,
 			);
 			path = "StoreSearch v2.0";
@@ -275,6 +302,7 @@
 			files = (
 				44B98BF21DE7D44700C98677 /* LaunchScreen.storyboard in Resources */,
 				44B98BEF1DE7D44700C98677 /* Assets.xcassets in Resources */,
+				442F66021DED53A000DA5216 /* LoadingCell.xib in Resources */,
 				44B98C191DE7D4E600C98677 /* SearchViewController.xib in Resources */,
 				4444CC291DEA6AD800983B99 /* NothingFoundCell.xib in Resources */,
 				4444CC271DEA663D00983B99 /* SearchResultCell.xib in Resources */,

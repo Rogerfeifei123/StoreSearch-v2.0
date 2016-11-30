@@ -12,6 +12,7 @@
 
  static NSString*const searchResultCellIdentifer=@"SearchResultCell";
  static NSString*const nothingFoundCellIdentifer=@"NothingFoundCell";
+ static NSString*const loadingCellIdentifer=@"LoadingCell";
 
 @interface SearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property(nonatomic,weak)IBOutlet UISearchBar*searchBar;
@@ -21,20 +22,36 @@
 @implementation SearchViewController
 {
     NSMutableArray*_searchResults;
+    BOOL _isLoading;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.searchBar becomeFirstResponder];
+    
     
     self.tableView.rowHeight=80;
     self.tableView.contentInset=UIEdgeInsetsMake(64, 0, 0, 0);
+    
     UINib*cellNib=[UINib nibWithNibName:searchResultCellIdentifer bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:searchResultCellIdentifer];
+    
     cellNib=[UINib nibWithNibName:nothingFoundCellIdentifer bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:nothingFoundCellIdentifer];
     
+    cellNib=[UINib nibWithNibName:loadingCellIdentifer bundle:nil];
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:loadingCellIdentifer];
+    
+    [self.searchBar becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,17 +61,37 @@
 }
 
 #pragma mark - UITableViewDataSource
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (_isLoading){
+        return 1;
+    } else if (_searchResults==nil){
+        return 0;
+    }else if ([_searchResults count]==0){
+        return 1;
+    }else{
+        return [_searchResults count];
+    }
+    
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)ndexPath
 {
     
-    
-    if ([_searchResults count]==0)
+    if (_isLoading)
     {
-        return [tableView dequeueReusableCellWithIdentifier:nothingFoundCellIdentifer];
+        UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:loadingCellIdentifer forIndexPath:(NSIndexPath*)ndexPath];
+        //UIActivityIndicatorView*spinner=(UIActivityIndicatorView*)[cell viewWithTag:100];
+        //[spinner startAnimating];
+        return cell;
+    }else if ([_searchResults count]==0)
+    {
+        return [tableView dequeueReusableCellWithIdentifier:nothingFoundCellIdentifer forIndexPath:(NSIndexPath*)ndexPath];
     }else
     {
-        SearchResultTableViewCell*cell=(SearchResultTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:searchResultCellIdentifer];
-    SearchResult*searchResult=_searchResults[indexPath.row];
+        SearchResultTableViewCell*cell=(SearchResultTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:searchResultCellIdentifer forIndexPath:(NSIndexPath*)ndexPath];
+        SearchResult*searchResult=_searchResults[ndexPath.row];
         cell.nameLabel.text=searchResult.name;
         
         NSString*artistName=searchResult.artistName;
@@ -65,53 +102,78 @@
         cell.artistNameLabel.text=[NSString stringWithFormat:@"%@ (%@)",artistName,kind];
         return cell;
     }
-    
 }
 
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (_searchResults==nil) {
-        return 0;
-    }else if ([_searchResults count]==0){
-        return 1;
-    }else{
-        return _searchResults.count;
-    }
-    
-}
+
 
 #pragma mark - UItableviewDelegate
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+-(NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([_searchResults count] ==0 ||_isLoading) {
+        return nil;
+    }else{
+        return indexPath;
+    }
+}
+
 #pragma mark - UISearchBarDelegate
+-(UIBarPosition)positionForBar:(id<UIBarPositioning>)bar{
+    return UIBarPositionTopAttached;
+}
+
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    if ([searchBar.text length]>0) {
+    if ([searchBar.text length]>0)
+    {
         [searchBar resignFirstResponder];
-    }
+        _isLoading=YES;
+        [self.tableView reloadData];
+    
     
     _searchResults=[NSMutableArray arrayWithCapacity:10];
     
-    NSURL*url=[self urlwithSearchText:searchBar.text];
-    NSLog(@"The Url is %@",url);
+        dispatch_queue_t queue=dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            
+            NSURL*url=[self urlwithSearchText:searchBar.text];
+            NSLog(@"The Url is %@",url);
     
-    NSString*jsonStr=[self performStoreRequestWithUrl:url];
-    NSLog(@"Recieved jsonStr is: %@",jsonStr);
-    if (jsonStr==nil) {
-        [self showNetWorkError];
-        return;
+            NSString*jsonStr=[self performStoreRequestWithUrl:url];
+            NSLog(@"Recieved jsonStr is: %@",jsonStr);
+            if (jsonStr==nil){
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [self showNetWorkError];
+                });
+                return;
+            }
+    
+            NSDictionary*dictionary=[self parseJSON:jsonStr];
+            if(dictionary==nil){
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                NSLog(@"Error!");
+                });
+                return;
+            }
+            
+            NSLog(@"Dictionary is %@",dictionary);
+            [self parseDictionary:dictionary];
+            [_searchResults sortUsingSelector:@selector(compareName:)];
+            dispatch_sync(dispatch_get_main_queue(),^{
+                _isLoading=NO;
+                [self.tableView reloadData];
+            });
+        });
     }
-    
-    NSDictionary*dictionary=[self parseJSON:jsonStr];
-    NSLog(@"Dictionary is %@",dictionary);
-    [self parseDictionary:dictionary];
-    [_searchResults sortUsingSelector:@selector(compareName:)];
-    [self.tableView reloadData];
 }
+                       
 
 -(NSString*)performStoreRequestWithUrl:(NSURL*)url{
     NSError*error;
@@ -125,8 +187,9 @@
 
 //change the format of the inputtext to valid format
 -(NSURL*)urlwithSearchText:(NSString*)searchText{
+    
     NSString*allowedCharactors=[searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSString*urlString=[NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@",allowedCharactors];
+    NSString*urlString=[NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=200",allowedCharactors];
     NSURL*url=[NSURL URLWithString:urlString];
     return url;
 }
@@ -148,6 +211,7 @@
     return resultObject;
 }
 
+//Parse NSDictionary to searchResult
 -(void)parseDictionary:(NSDictionary*)dictionary
 {
     NSArray*array=dictionary [@"results"];
@@ -254,6 +318,7 @@
     return searchResult;
 
 }
+
 @end
 
 
