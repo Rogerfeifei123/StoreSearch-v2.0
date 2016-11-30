@@ -140,7 +140,6 @@
         _isLoading=YES;
         [self.tableView reloadData];
     
-    
         _searchResults=[NSMutableArray arrayWithCapacity:10];
             
         NSURL*url=[self urlwithSearchText:searchBar.text];
@@ -148,21 +147,22 @@
         
         AFHTTPRequestOperation*operation=[[AFHTTPRequestOperation alloc] initWithRequest:request];
         operation.responseSerializer=[AFJSONResponseSerializer serializer];
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation*operation, id responseObject){
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation*operation, id responseObject)
+         {
             [self parseDictionary:responseObject];
             [_searchResults sortUsingSelector:@selector(compareName:)];
             _isLoading=NO;
             [self.tableView reloadData];
-            ;}
+         }
         failure:^(AFHTTPRequestOperation*operation,NSError*error){
             [self showNetWorkError];
             _isLoading=NO;
             [self.tableView reloadData];
         }];
         [_queue addOperation:operation];
-               }
+    }
 }
-                       
+
 
 
 
