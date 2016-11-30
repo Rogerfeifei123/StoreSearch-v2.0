@@ -27,11 +27,11 @@
 }
 
 -(void)customizeAppearance{
-   /* UIColor *barTintColor = [UIColor colorWithRed:20/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
-    [[UISearchBar appearance] setBarTintColor:barTintColor];
-    self.window.tintColor = [UIColor colorWithRed:10/255.0f green:80/255.0f blue:80/255.0f alpha:1.0f];*/
+  
     UIColor*barColor=[UIColor colorWithRed:20/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
+    
     [[UISearchBar appearance]setBarTintColor:barColor];
+    
     self.window.tintColor=[UIColor colorWithRed:10/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
 }
 

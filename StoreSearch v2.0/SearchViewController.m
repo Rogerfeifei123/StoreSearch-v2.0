@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "SearchResult.h"
 #import "SearchResultTableViewCell.h"
+#import <AFNetworking.h>
 
  static NSString*const searchResultCellIdentifer=@"SearchResultCell";
  static NSString*const nothingFoundCellIdentifer=@"NothingFoundCell";
@@ -23,6 +24,7 @@
 {
     NSMutableArray*_searchResults;
     BOOL _isLoading;
+    NSOperationQueue*_queue;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,6 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _queue=[[NSOperationQueue alloc]init ];
     }
     return self;
 }
@@ -82,8 +85,8 @@
     if (_isLoading)
     {
         UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:loadingCellIdentifer forIndexPath:(NSIndexPath*)ndexPath];
-        UIActivityIndicatorView*spinner=(UIActivityIndicatorView*)[cell viewWithTag:100];
-        [spinner startAnimating];
+        //UIActivityIndicatorView*spinner=(UIActivityIndicatorView*)[cell viewWithTag:100];
+        //[spinner startAnimating];
         return cell;
     }else if ([_searchResults count]==0)
     {
@@ -138,52 +141,30 @@
         [self.tableView reloadData];
     
     
-    _searchResults=[NSMutableArray arrayWithCapacity:10];
-    
-        dispatch_queue_t queue=dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(queue, ^{
+        _searchResults=[NSMutableArray arrayWithCapacity:10];
             
-            NSURL*url=[self urlwithSearchText:searchBar.text];
-            NSLog(@"The Url is %@",url);
-    
-            NSString*jsonStr=[self performStoreRequestWithUrl:url];
-            NSLog(@"Recieved jsonStr is: %@",jsonStr);
-            if (jsonStr==nil){
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    [self showNetWorkError];
-                });
-                return;
-            }
-    
-            NSDictionary*dictionary=[self parseJSON:jsonStr];
-            if(dictionary==nil){
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                NSLog(@"Error!");
-                });
-                return;
-            }
-            
-            NSLog(@"Dictionary is %@",dictionary);
-            [self parseDictionary:dictionary];
+        NSURL*url=[self urlwithSearchText:searchBar.text];
+        NSURLRequest*request=[NSURLRequest requestWithURL:url];
+        
+        AFHTTPRequestOperation*operation=[[AFHTTPRequestOperation alloc] initWithRequest:request];
+        operation.responseSerializer=[AFJSONResponseSerializer serializer];
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation*operation, id responseObject){
+            [self parseDictionary:responseObject];
             [_searchResults sortUsingSelector:@selector(compareName:)];
-            dispatch_sync(dispatch_get_main_queue(),^{
-                _isLoading=NO;
-                [self.tableView reloadData];
-            });
-        });
-    }
+            _isLoading=NO;
+            [self.tableView reloadData];
+            ;}
+        failure:^(AFHTTPRequestOperation*operation,NSError*error){
+            [self showNetWorkError];
+            _isLoading=NO;
+            [self.tableView reloadData];
+        }];
+        [_queue addOperation:operation];
+               }
 }
                        
 
--(NSString*)performStoreRequestWithUrl:(NSURL*)url{
-    NSError*error;
-    NSString*resultStr=[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
-    if (resultStr==nil) {
-        NSLog(@"Error is: %@",error);
-        return nil;
-    }
-    return resultStr;
-}
+
 
 //change the format of the inputtext to valid format
 -(NSURL*)urlwithSearchText:(NSString*)searchText{
@@ -194,22 +175,7 @@
     return url;
 }
 
--(NSDictionary*)parseJSON:(NSString*)JSONStr
-{
-    NSData*data=[JSONStr dataUsingEncoding:NSUTF8StringEncoding];
-    NSError*error;
-    id resultObject=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if (resultObject==nil) {
-        NSLog(@"Error is: %@",error);
-        return nil;
-    }
-    if (![resultObject isKindOfClass:[NSDictionary class]]) {
-        NSLog(@"Json Error:Expected kind of data");
-        return nil;
-        
-    }
-    return resultObject;
-}
+
 
 //Parse NSDictionary to searchResult
 -(void)parseDictionary:(NSDictionary*)dictionary
