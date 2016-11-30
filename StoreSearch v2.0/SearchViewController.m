@@ -82,8 +82,8 @@
     if (_isLoading)
     {
         UITableViewCell*cell=[tableView dequeueReusableCellWithIdentifier:loadingCellIdentifer forIndexPath:(NSIndexPath*)ndexPath];
-        //UIActivityIndicatorView*spinner=(UIActivityIndicatorView*)[cell viewWithTag:100];
-        //[spinner startAnimating];
+        UIActivityIndicatorView*spinner=(UIActivityIndicatorView*)[cell viewWithTag:100];
+        [spinner startAnimating];
         return cell;
     }else if ([_searchResults count]==0)
     {
