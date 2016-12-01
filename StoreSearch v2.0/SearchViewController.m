@@ -18,6 +18,7 @@
 @interface SearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property(nonatomic,weak)IBOutlet UISearchBar*searchBar;
 @property(nonatomic,weak)IBOutlet UITableView*tableView;
+@property(nonatomic,weak)IBOutlet UISegmentedControl*segmentedControl;
 @end
 
 @implementation SearchViewController
@@ -287,6 +288,11 @@
 
     return searchResult;
 
+}
+
+-(IBAction)segmentChanged:(UISegmentedControl*)sender
+{
+    NSLog(@"SegmentChanged %ld",(long)sender.selectedSegmentIndex);
 }
 
 @end
