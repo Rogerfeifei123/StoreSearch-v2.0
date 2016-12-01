@@ -43,9 +43,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="All"/>
-                                    <segment title="E-Book"/>
-                                    <segment title="Video"/>
+                                    <segment title="Song"/>
                                     <segment title="Software"/>
+                                    <segment title="E-Book"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentChanged:" destination="-1" eventType="valueChanged" id="V7T-xn-4ws"/>
