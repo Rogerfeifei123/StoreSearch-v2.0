@@ -44,7 +44,7 @@
     
     
     self.tableView.rowHeight=80;
-    self.tableView.contentInset=UIEdgeInsetsMake(64, 0, 0, 0);
+    self.tableView.contentInset=UIEdgeInsetsMake(108, 0, 0, 0);
     
     UINib*cellNib=[UINib nibWithNibName:searchResultCellIdentifer bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:searchResultCellIdentifer];
@@ -135,16 +135,21 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    if ([searchBar.text length]>0)
+    [self performSearch];
+}
+
+-(void)performSearch
+{
+    if ([self.searchBar.text length]>0)
     {
-       // [_queue cancelAllOperations];
-        [searchBar resignFirstResponder];
+       [_queue cancelAllOperations];
+        [self.searchBar resignFirstResponder];
         _isLoading=YES;
         [self.tableView reloadData];
     
         _searchResults=[NSMutableArray arrayWithCapacity:10];
-            
-        NSURL*url=[self urlwithSearchText:searchBar.text];
+            //urlwithSearchText:self.searchBar.text
+        NSURL*url=[self urlwithSearchText:self.searchBar.text category:self.segmentedControl.selectedSegmentIndex];
         NSURLRequest*request=[NSURLRequest requestWithURL:url];
         
         AFHTTPRequestOperation*operation=[[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -172,10 +177,21 @@
 
 
 //change the format of the inputtext to valid format
--(NSURL*)urlwithSearchText:(NSString*)searchText{
+-(NSURL*)urlwithSearchText:(NSString*)searchText category:(NSInteger)category{
+    NSString*categoryName;
+    switch (category) {
+        case 0:categoryName=@"";
+            break;
+        case 1:categoryName=@"musicTrack";
+            break;
+        case 2: categoryName = @"software";
+            break;
+        case 3: categoryName = @"ebook";
+            break;
+    }
     
     NSString*allowedCharactors=[searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSString*urlString=[NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=500",allowedCharactors];
+    NSString*urlString=[NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=200&entity=%@",allowedCharactors,categoryName];
     NSURL*url=[NSURL URLWithString:urlString];
     return url;
 }
@@ -292,7 +308,9 @@
 
 -(IBAction)segmentChanged:(UISegmentedControl*)sender
 {
-    NSLog(@"SegmentChanged %ld",(long)sender.selectedSegmentIndex);
+    if (_searchResults!=nil) {
+        [self performSearch];
+    }
 }
 
 @end
