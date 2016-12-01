@@ -136,6 +136,7 @@
 {
     if ([searchBar.text length]>0)
     {
+       // [_queue cancelAllOperations];
         [searchBar resignFirstResponder];
         _isLoading=YES;
         [self.tableView reloadData];
@@ -155,6 +156,9 @@
             [self.tableView reloadData];
          }
         failure:^(AFHTTPRequestOperation*operation,NSError*error){
+            if (operation.isCancelled) {
+               return ;
+            }
             [self showNetWorkError];
             _isLoading=NO;
             [self.tableView reloadData];
@@ -170,7 +174,7 @@
 -(NSURL*)urlwithSearchText:(NSString*)searchText{
     
     NSString*allowedCharactors=[searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSString*urlString=[NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=200",allowedCharactors];
+    NSString*urlString=[NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=500",allowedCharactors];
     NSURL*url=[NSURL URLWithString:urlString];
     return url;
 }
