@@ -148,7 +148,6 @@
         [self.tableView reloadData];
     
         _searchResults=[NSMutableArray arrayWithCapacity:10];
-            //urlwithSearchText:self.searchBar.text
         NSURL*url=[self urlwithSearchText:self.searchBar.text category:self.segmentedControl.selectedSegmentIndex];
         NSURLRequest*request=[NSURLRequest requestWithURL:url];
         
