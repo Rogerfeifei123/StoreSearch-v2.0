@@ -7,7 +7,7 @@
 //
 
 #import "SearchResultTableViewCell.h"
-
+#import "SearchResult.h"
 @implementation SearchResultTableViewCell
 
 - (void)awakeFromNib {

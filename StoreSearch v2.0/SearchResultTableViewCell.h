@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SearchResult;
 @interface SearchResultTableViewCell : UITableViewCell
 @property(nonatomic,weak)IBOutlet UIImageView*artistWorkImageView;
 @property(nonatomic,weak)IBOutlet UILabel*nameLabel;
 @property(nonatomic,weak)IBOutlet UILabel*artistNameLabel;
-
+-(void)configureForSearchResult:(SearchResult*)searchResult;
 @end
