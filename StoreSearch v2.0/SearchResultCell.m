@@ -6,10 +6,10 @@
 //  Copyright © 2016 ZhuRoger. All rights reserved.
 //
 
-#import "SearchResult.h"
+#import "SearchResultCell.h"
 
-@implementation SearchResult
--(NSComparisonResult)compareName:(SearchResult *)other
+@implementation SearchResultCell
+-(NSComparisonResult)compareName:(SearchResultCell *)other
 {
     return [self.name localizedStandardCompare:other.name];
 }

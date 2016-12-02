@@ -7,7 +7,7 @@
 //
 
 #import "SearchViewController.h"
-#import "SearchResult.h"
+#import "SearchResultCell.h"
 #import "SearchResultTableViewCell.h"
 #import <AFNetworking.h>
 
@@ -240,7 +240,7 @@
 }
 
 
--(SearchResult*)parseTrack:(NSDictionary*)dictionary
+-(SearchResultCell*)parseTrack:(NSDictionary*)dictionary
 {
     SearchResult*searchResult=[[SearchResult alloc] init];
     searchResult.name = dictionary[@"trackName"];

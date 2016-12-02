@@ -21,7 +21,7 @@
 		44B98C081DE7D44800C98677 /* StoreSearch_v2_0UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B98C071DE7D44800C98677 /* StoreSearch_v2_0UITests.m */; };
 		44B98C181DE7D4E600C98677 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B98C161DE7D4E600C98677 /* SearchViewController.m */; };
 		44B98C191DE7D4E600C98677 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44B98C171DE7D4E600C98677 /* SearchViewController.xib */; };
-		44B98C1C1DE7DF1A00C98677 /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B98C1B1DE7DF1A00C98677 /* SearchResult.m */; };
+		44B98C1C1DE7DF1A00C98677 /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B98C1B1DE7DF1A00C98677 /* SearchResultCell.m */; };
 		53DF0B9BE70088501F3E80FC /* libPods-StoreSearch v2.0Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12356FD8439B0D6CA46CDF97 /* libPods-StoreSearch v2.0Tests.a */; };
 		96C95C0AFE9D68C4EB21150C /* libPods-StoreSearch v2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3894AD5CA7130FDAC68740 /* libPods-StoreSearch v2.0.a */; };
 		D8E8A1431FA69596227FC667 /* libPods-StoreSearch v2.0UITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1618A31AB25F1C3ABA652282 /* libPods-StoreSearch v2.0UITests.a */; };
@@ -72,8 +72,8 @@
 		44B98C151DE7D4E600C98677 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		44B98C161DE7D4E600C98677 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		44B98C171DE7D4E600C98677 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
-		44B98C1A1DE7DF1A00C98677 /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
-		44B98C1B1DE7DF1A00C98677 /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
+		44B98C1A1DE7DF1A00C98677 /* SearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultCell.h; sourceTree = "<group>"; };
+		44B98C1B1DE7DF1A00C98677 /* SearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultCell.m; sourceTree = "<group>"; };
 		719DB7CC6FFE6F873AFEA439 /* Pods-StoreSearch v2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch v2.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-StoreSearch v2.0/Pods-StoreSearch v2.0.release.xcconfig"; sourceTree = "<group>"; };
 		8377247B85BA8B3C73EA583F /* Pods-StoreSearch v2.0UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch v2.0UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StoreSearch v2.0UITests/Pods-StoreSearch v2.0UITests.release.xcconfig"; sourceTree = "<group>"; };
 		A67AC3D7C74B84F318240ACC /* Pods-StoreSearch v2.0Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch v2.0Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StoreSearch v2.0Tests/Pods-StoreSearch v2.0Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,8 +113,8 @@
 		444083831DEDB0020041F9C6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				44B98C1A1DE7DF1A00C98677 /* SearchResult.h */,
-				44B98C1B1DE7DF1A00C98677 /* SearchResult.m */,
+				44B98C1A1DE7DF1A00C98677 /* SearchResultCell.h */,
+				44B98C1B1DE7DF1A00C98677 /* SearchResultCell.m */,
 				44B98BEB1DE7D44700C98677 /* StoreSearch_v2_0.xcdatamodeld */,
 			);
 			name = Model;
@@ -517,7 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44B98C1C1DE7DF1A00C98677 /* SearchResult.m in Sources */,
+				44B98C1C1DE7DF1A00C98677 /* SearchResultCell.m in Sources */,
 				44B98BE71DE7D44700C98677 /* ViewController.m in Sources */,
 				44B98BE41DE7D44700C98677 /* AppDelegate.m in Sources */,
 				44B98C181DE7D4E600C98677 /* SearchViewController.m in Sources */,
