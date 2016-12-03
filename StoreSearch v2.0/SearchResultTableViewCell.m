@@ -38,5 +38,12 @@
     
 }
 
+-(void)prepareForReuse
+{
+    [super prepareForReuse];
+    [self.artistWorkImageView cancelImageRequestOperation];
+    self.artistNameLabel.text=nil;
+    self.nameLabel.text=nil;
+}
 
 @end

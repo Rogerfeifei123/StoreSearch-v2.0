@@ -97,14 +97,6 @@
     {
         SearchResultTableViewCell*cell=(SearchResultTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:searchResultCellIdentifer forIndexPath:(NSIndexPath*)ndexPath];
         SearchResult*searchResult=_searchResults[ndexPath.row];
-        /*cell.nameLabel.text=searchResult.name;
-        
-        NSString*artistName=searchResult.artistName;
-        if (searchResult.artistName==nil) {
-            artistName=@"Unknow";
-        }
-        NSString*kind=searchResult.kind;
-        cell.artistNameLabel.text=[NSString stringWithFormat:@"%@ (%@)",artistName,kind];*/
         [cell configureForSearchResult:searchResult];
         return cell;
     }
@@ -192,7 +184,7 @@
     }
     
     NSString*allowedCharactors=[searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSString*urlString=[NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&limit=200&entity=%@",allowedCharactors,categoryName];
+    NSString*urlString=[NSString stringWithFormat:@"http://itunes.apple.com/search?term=%@&entity=%@",allowedCharactors,categoryName];
     NSURL*url=[NSURL URLWithString:urlString];
     return url;
 }
