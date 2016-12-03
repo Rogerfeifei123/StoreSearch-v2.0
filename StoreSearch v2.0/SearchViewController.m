@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "SearchResult.h"
 #import "SearchResultTableViewCell.h"
+#import "SearchViewController.h"
 #import <AFNetworking.h>
 
  static NSString*const searchResultCellIdentifer=@"SearchResultCell";
@@ -96,14 +97,15 @@
     {
         SearchResultTableViewCell*cell=(SearchResultTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:searchResultCellIdentifer forIndexPath:(NSIndexPath*)ndexPath];
         SearchResult*searchResult=_searchResults[ndexPath.row];
-        cell.nameLabel.text=searchResult.name;
+        /*cell.nameLabel.text=searchResult.name;
         
         NSString*artistName=searchResult.artistName;
         if (searchResult.artistName==nil) {
             artistName=@"Unknow";
         }
         NSString*kind=searchResult.kind;
-        cell.artistNameLabel.text=[NSString stringWithFormat:@"%@ (%@)",artistName,kind];
+        cell.artistNameLabel.text=[NSString stringWithFormat:@"%@ (%@)",artistName,kind];*/
+        [cell configureForSearchResult:searchResult];
         return cell;
     }
 }

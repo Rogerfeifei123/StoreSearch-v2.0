@@ -8,6 +8,8 @@
 
 #import "SearchResultTableViewCell.h"
 #import "SearchResult.h"
+#import <UIImageView+AFNetworking.h>
+
 @implementation SearchResultTableViewCell
 
 - (void)awakeFromNib {
@@ -22,5 +24,19 @@
 
     // Configure the view for the selected state
 }
+
+-(void)configureForSearchResult:(SearchResult *)searchResult
+{
+    self.nameLabel.text=searchResult.name;
+    NSString*artistName=searchResult.artistName;
+    if (artistName==nil) {
+        artistName=@"Unknow";
+    }
+    NSString*kind=searchResult.kind;
+    self.artistNameLabel.text=[NSString stringWithFormat:@"%@(%@)",artistName,kind];
+    [self.artistWorkImageView setImageWithURL:[NSURL URLWithString:searchResult.artworkURL60] placeholderImage:[UIImage imageNamed:@"Placeholder"]];
+    
+}
+
 
 @end
