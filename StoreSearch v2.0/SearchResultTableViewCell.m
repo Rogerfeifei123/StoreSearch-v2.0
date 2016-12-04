@@ -8,6 +8,7 @@
 
 #import "SearchResultTableViewCell.h"
 #import "SearchResult.h"
+
 #import <UIImageView+AFNetworking.h>
 
 @implementation SearchResultTableViewCell
