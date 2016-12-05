@@ -9,6 +9,13 @@
 #import "DetailViewController.h"
 
 @interface DetailViewController ()
+@property(weak,nonatomic)IBOutlet UIView*popupView;
+@property(weak,nonatomic)IBOutlet UIImageView*imageView;
+@property(weak,nonatomic)IBOutlet UILabel*nameLabel;
+@property(weak,nonatomic)IBOutlet UILabel*artistLabel;
+@property(weak,nonatomic)IBOutlet UILabel*kindLabel;
+@property(weak,nonatomic)IBOutlet UILabel*genreLabek;
+@property(weak,nonatomic)IBOutlet UIButton*pireceButton;
 
 @end
 
@@ -29,6 +36,7 @@
     [self willMoveToParentViewController:nil];
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
+    
 }
 
 /*

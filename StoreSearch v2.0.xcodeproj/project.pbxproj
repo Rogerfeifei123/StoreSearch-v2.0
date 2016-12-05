@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		442F66021DED53A000DA5216 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442F66011DED53A000DA5216 /* LoadingCell.xib */; };
+		443360851DF4FCF4005AA944 /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 443360841DF4FCF4005AA944 /* Placeholder.png */; };
 		4444CC271DEA663D00983B99 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4444CC261DEA663D00983B99 /* SearchResultCell.xib */; };
 		4444CC291DEA6AD800983B99 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4444CC281DEA6AD800983B99 /* NothingFoundCell.xib */; };
 		4444CC2C1DEA6E6E00983B99 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4444CC2B1DEA6E6E00983B99 /* SearchResultTableViewCell.m */; };
@@ -51,6 +52,7 @@
 		1618A31AB25F1C3ABA652282 /* libPods-StoreSearch v2.0UITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StoreSearch v2.0UITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42B58AF688E311EBD7727A33 /* Pods-StoreSearch v2.0Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreSearch v2.0Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StoreSearch v2.0Tests/Pods-StoreSearch v2.0Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		442F66011DED53A000DA5216 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		443360841DF4FCF4005AA944 /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Placeholder.png; path = ../Placeholder.png; sourceTree = "<group>"; };
 		4444CC261DEA663D00983B99 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		4444CC281DEA6AD800983B99 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		4444CC2A1DEA6E6E00983B99 /* SearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTableViewCell.h; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				44B98BF01DE7D44700C98677 /* LaunchScreen.storyboard */,
 				4468AEF11DF4156700F9E109 /* DetailViewController.xib */,
 				44B98BEE1DE7D44700C98677 /* Assets.xcassets */,
+				443360841DF4FCF4005AA944 /* Placeholder.png */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				443360851DF4FCF4005AA944 /* Placeholder.png in Resources */,
 				44B98BF21DE7D44700C98677 /* LaunchScreen.storyboard in Resources */,
 				44B98BEF1DE7D44700C98677 /* Assets.xcassets in Resources */,
 				4468AEF31DF4156700F9E109 /* DetailViewController.xib in Resources */,
