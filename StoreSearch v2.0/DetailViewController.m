@@ -21,6 +21,11 @@
 @end
 
 @implementation DetailViewController
+//NameLbael--result.name
+//artistLabel--result.artist
+//kindLabel--result.kind
+//genreLabel--result.genre
+//priceButton--result.price
 
 - (void)viewDidLoad
 {
