@@ -15,7 +15,7 @@
 @property(weak,nonatomic)IBOutlet UILabel*artistLabel;
 @property(weak,nonatomic)IBOutlet UILabel*kindLabel;
 @property(weak,nonatomic)IBOutlet UILabel*genreLabek;
-@property(weak,nonatomic)IBOutlet UIButton*pireceButton;
+@property(weak,nonatomic)IBOutlet UIButton*priceButton;
 
 @end
 
@@ -23,13 +23,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    UIImage *image = [[UIImage imageNamed:@"PriceButton-1"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+    [self.priceButton setBackgroundImage:image forState:UIControlStateNormal];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 -(IBAction)closeView:(id)sender
 {
