@@ -7,8 +7,9 @@
 //
 
 #import "DetailViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
-@interface DetailViewController ()
+@interface DetailViewController ()<UIGestureRecognizerDelegate>
 @property(weak,nonatomic)IBOutlet UIView*popupView;
 @property(weak,nonatomic)IBOutlet UIImageView*imageView;
 @property(weak,nonatomic)IBOutlet UILabel*nameLabel;
@@ -28,7 +29,18 @@
     //The UIEdgeInsetMake method is to decide which part of the image is going to be stretched,the four number is anticlockwise with (top/ left/ bottom/ right)the detail number decide the distance to the edge
     UIImage *image = [[UIImage imageNamed:@"PriceButton-1"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
     [self.priceButton setBackgroundImage:image forState:UIControlStateNormal];
+    image=[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.popupView.layer.cornerRadius=10.0f;
+    self.view.tintColor=[UIColor colorWithRed:20/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
+    UITapGestureRecognizer*tapgestureRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(close:)];
+    tapgestureRecognizer.cancelsTouchesInView=NO;
+    tapgestureRecognizer.delegate=self;
+    [self.view addGestureRecognizer:tapgestureRecognizer];
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return (self.view==touch.view);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +50,7 @@
 }
 
 
--(IBAction)closeView:(id)sender
+-(IBAction)close:(id)sender
 {
     [self willMoveToParentViewController:nil];
     [self.view removeFromSuperview];

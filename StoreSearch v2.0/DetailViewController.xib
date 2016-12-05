@@ -23,22 +23,25 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hby-Fs-bCK" userLabel="Popup View">
-                    <frame key="frameInset" minX="67" minY="191" width="240" height="319"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hby-Fs-bCK" userLabel="Popup View">
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DsC-co-dZw" userLabel="CloseButton">
                             <frame key="frameInset" width="20" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="CloseButton-1"/>
+                            <state key="normal" image="CloseButton-1">
+                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
                             <connections>
-                                <action selector="closeView:" destination="-1" eventType="touchUpInside" id="73q-4X-KJP"/>
+                                <action selector="close:" destination="-1" eventType="touchUpInside" id="uU7-WR-1D4"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hL-sd-zKO">
                             <frame key="frameInset" minX="169" minY="285" width="60" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="$9.99"/>
+                            <state key="normal" title="$9.99">
+                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y46-04-eN3">
                             <frame key="frameInset" minX="17" minY="129" width="79" height="21"/>
@@ -87,11 +90,17 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.43219272780000001" green="0.72702511989999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="0.47157118055555558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="tintColor" white="1" alpha="0.99277611301369861" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.050166560909999998" green="0.050166560909999998" blue="0.050166560909999998" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hby-Fs-bCK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3q3-DY-lzg"/>
+                <constraint firstItem="hby-Fs-bCK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="67" id="Eb5-1N-Byu"/>
+                <constraint firstItem="hby-Fs-bCK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="191" id="cKU-hx-B0j"/>
+                <constraint firstItem="hby-Fs-bCK" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="17" id="w58-5x-kWk"/>
+            </constraints>
             <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
