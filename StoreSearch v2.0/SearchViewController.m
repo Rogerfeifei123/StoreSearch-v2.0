@@ -113,7 +113,11 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     DetailViewController*controller=[[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    //[self presentViewController:controller animated:YES completion:nil];
+   
+    SearchResult*result=_searchResults[indexPath.row];
+    controller.searchResult=result;
+    controller.view.frame=self.view.bounds;
+    
     [self.view addSubview:controller.view];
     [self addChildViewController:controller];
     [controller didMoveToParentViewController:self];

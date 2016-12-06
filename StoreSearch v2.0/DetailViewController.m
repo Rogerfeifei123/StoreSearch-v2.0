@@ -8,6 +8,8 @@
 
 #import "DetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SearchResult.h"
+
 
 @interface DetailViewController ()<UIGestureRecognizerDelegate>
 @property(weak,nonatomic)IBOutlet UIView*popupView;
@@ -21,11 +23,7 @@
 @end
 
 @implementation DetailViewController
-//NameLbael--result.name
-//artistLabel--result.artist
-//kindLabel--result.kind
-//genreLabel--result.genre
-//priceButton--result.price
+
 
 - (void)viewDidLoad
 {
@@ -37,10 +35,34 @@
     image=[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.popupView.layer.cornerRadius=10.0f;
     self.view.tintColor=[UIColor colorWithRed:20/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
+    
     UITapGestureRecognizer*tapgestureRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(close:)];
     tapgestureRecognizer.cancelsTouchesInView=NO;
     tapgestureRecognizer.delegate=self;
     [self.view addGestureRecognizer:tapgestureRecognizer];
+    
+    if (self.searchResult!=nil) {
+        [self updateUI];
+    }
+}
+
+//NameLbael--result.name
+//artistLabel--result.artist
+//kindLabel--result.kind
+//genreLabel--result.genre
+//priceButton--result.price
+-(void)updateUI
+{
+    self.nameLabel.text=self.searchResult.name;
+    self.artistLabel.text=self.searchResult.artistName;
+    if (self.artistLabel.text==nil) {
+        self.artistLabel.text=@"Unknow";
+    }
+    self.kindLabel.text=[self.searchResult kindForDisplay];
+    self.genreLabek.text=self.searchResult.genre;
+    
+    
+    
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
