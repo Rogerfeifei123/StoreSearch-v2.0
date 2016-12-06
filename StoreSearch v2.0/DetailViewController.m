@@ -29,12 +29,14 @@
 {
     [super viewDidLoad];
     
+    
     //The UIEdgeInsetMake method is to decide which part of the image is going to be stretched,the four number is anticlockwise with (top/ left/ bottom/ right)the detail number decide the distance to the edge
     UIImage *image = [[UIImage imageNamed:@"PriceButton-1"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
     [self.priceButton setBackgroundImage:image forState:UIControlStateNormal];
     image=[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.popupView.layer.cornerRadius=10.0f;
     self.view.tintColor=[UIColor colorWithRed:20/255.0f green:160/255.0f blue:160/255.0f alpha:1.0f];
+    [self.priceButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
     
     UITapGestureRecognizer*tapgestureRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(close:)];
     tapgestureRecognizer.cancelsTouchesInView=NO;
@@ -61,8 +63,17 @@
     self.kindLabel.text=[self.searchResult kindForDisplay];
     self.genreLabek.text=self.searchResult.genre;
     
+    NSNumberFormatter*numberFormatter=[[NSNumberFormatter alloc]init];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [numberFormatter setCurrencyCode:self.searchResult.currency];
     
-    
+    NSString*priceText;
+    if ([self.searchResult.price floatValue]==0.0f) {
+        priceText=@"Free";
+    }else{
+        priceText=[numberFormatter stringFromNumber:self.searchResult.price];
+    }
+    [self.priceButton setTitle:[NSString stringWithFormat:@"%@",priceText] forState:UIControlStateNormal];
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
