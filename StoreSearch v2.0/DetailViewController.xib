@@ -74,12 +74,20 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LLm-q0-Sss"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LLm-q0-Sss">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="8Yn-7V-abl"/>
+                                <constraint firstAttribute="width" constant="100" id="ADc-6z-Oap"/>
+                            </constraints>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hL-sd-zKO">
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="uv1-KG-rd8"/>
                             </constraints>
                             <state key="normal" title="$9.99"/>
+                            <connections>
+                                <action selector="openInStore:" destination="-1" eventType="touchUpInside" id="yvj-W3-SEo"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.078431372549019607" green="0.62745098039215685" blue="0.62745098039215685" alpha="0.95673694349315064" colorSpace="custom" customColorSpace="sRGB"/>
@@ -90,13 +98,13 @@
                         <constraint firstItem="HfA-X8-avw" firstAttribute="top" secondItem="u4a-KM-MVw" secondAttribute="bottom" constant="12" id="9A8-Me-J9I"/>
                         <constraint firstItem="ICI-JX-v17" firstAttribute="leading" secondItem="xbU-M7-2rH" secondAttribute="leading" id="9kt-zw-mw9"/>
                         <constraint firstItem="Jz1-v6-nLW" firstAttribute="top" secondItem="HfA-X8-avw" secondAttribute="bottom" constant="8" symbolic="YES" id="DjE-Gh-WFN"/>
-                        <constraint firstAttribute="trailing" secondItem="LLm-q0-Sss" secondAttribute="trailing" constant="70" id="GMu-Z8-V6V"/>
+                        <constraint firstAttribute="trailing" secondItem="LLm-q0-Sss" secondAttribute="trailing" constant="71" id="GMu-Z8-V6V"/>
                         <constraint firstItem="3hL-sd-zKO" firstAttribute="bottom" secondItem="hby-Fs-bCK" secondAttribute="bottomMargin" id="Hxk-Gv-5wK"/>
                         <constraint firstItem="y46-04-eN3" firstAttribute="top" secondItem="LLm-q0-Sss" secondAttribute="bottom" constant="13" id="LKq-84-5m5"/>
                         <constraint firstItem="3hL-sd-zKO" firstAttribute="trailing" secondItem="hby-Fs-bCK" secondAttribute="trailingMargin" id="SGT-rA-Apf"/>
                         <constraint firstItem="DsC-co-dZw" firstAttribute="leading" secondItem="hby-Fs-bCK" secondAttribute="leading" id="Wll-5o-V2I"/>
                         <constraint firstItem="HfA-X8-avw" firstAttribute="baseline" secondItem="ICI-JX-v17" secondAttribute="baseline" id="YSD-8Q-vmK"/>
-                        <constraint firstItem="LLm-q0-Sss" firstAttribute="leading" secondItem="DsC-co-dZw" secondAttribute="trailing" constant="50" id="aBQ-uG-j5O"/>
+                        <constraint firstItem="LLm-q0-Sss" firstAttribute="leading" secondItem="DsC-co-dZw" secondAttribute="trailing" constant="49" id="aBQ-uG-j5O"/>
                         <constraint firstItem="ICI-JX-v17" firstAttribute="trailing" secondItem="xbU-M7-2rH" secondAttribute="trailing" id="bmT-gg-Fdq"/>
                         <constraint firstItem="LLm-q0-Sss" firstAttribute="centerX" secondItem="hby-Fs-bCK" secondAttribute="centerX" id="hD8-fP-uIz"/>
                         <constraint firstAttribute="trailing" secondItem="y46-04-eN3" secondAttribute="trailing" constant="11" id="jfv-hX-uEj"/>
@@ -108,7 +116,7 @@
                         <constraint firstItem="y46-04-eN3" firstAttribute="leading" secondItem="u4a-KM-MVw" secondAttribute="leading" id="sup-UG-8ae"/>
                         <constraint firstItem="DsC-co-dZw" firstAttribute="top" secondItem="hby-Fs-bCK" secondAttribute="top" id="txT-8A-6Cl"/>
                         <constraint firstItem="ICI-JX-v17" firstAttribute="leading" secondItem="HfA-X8-avw" secondAttribute="trailing" constant="26" id="ueq-DU-MzV"/>
-                        <constraint firstItem="u4a-KM-MVw" firstAttribute="top" secondItem="y46-04-eN3" secondAttribute="bottom" constant="8" symbolic="YES" id="vFa-2W-bbq"/>
+                        <constraint firstItem="u4a-KM-MVw" firstAttribute="top" secondItem="y46-04-eN3" secondAttribute="bottom" constant="9.5" id="vFa-2W-bbq"/>
                         <constraint firstItem="LLm-q0-Sss" firstAttribute="top" secondItem="hby-Fs-bCK" secondAttribute="top" constant="16" id="wC2-zd-yZt"/>
                         <constraint firstItem="u4a-KM-MVw" firstAttribute="trailing" secondItem="ICI-JX-v17" secondAttribute="trailing" id="wUa-L2-12N"/>
                         <constraint firstItem="y46-04-eN3" firstAttribute="trailing" secondItem="u4a-KM-MVw" secondAttribute="trailing" id="zMK-ay-CHA"/>

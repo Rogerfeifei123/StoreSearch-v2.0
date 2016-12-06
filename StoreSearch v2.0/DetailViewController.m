@@ -9,7 +9,7 @@
 #import "DetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SearchResult.h"
-
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface DetailViewController ()<UIGestureRecognizerDelegate>
 @property(weak,nonatomic)IBOutlet UIView*popupView;
@@ -29,7 +29,6 @@
 {
     [super viewDidLoad];
     
-    
     //The UIEdgeInsetMake method is to decide which part of the image is going to be stretched,the four number is anticlockwise with (top/ left/ bottom/ right)the detail number decide the distance to the edge
     UIImage *image = [[UIImage imageNamed:@"PriceButton-1"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
     [self.priceButton setBackgroundImage:image forState:UIControlStateNormal];
@@ -48,11 +47,6 @@
     }
 }
 
-//NameLbael--result.name
-//artistLabel--result.artist
-//kindLabel--result.kind
-//genreLabel--result.genre
-//priceButton--result.price
 -(void)updateUI
 {
     self.nameLabel.text=self.searchResult.name;
@@ -74,6 +68,8 @@
         priceText=[numberFormatter stringFromNumber:self.searchResult.price];
     }
     [self.priceButton setTitle:[NSString stringWithFormat:@"%@",priceText] forState:UIControlStateNormal];
+    
+    [self.imageView setImageWithURL:[NSURL URLWithString:self.searchResult.artworkURL100]];
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
@@ -87,6 +83,12 @@
 
 }
 
+-(IBAction)openInStore:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.searchResult.storeURL] options:@{} completionHandler:nil];
+    NSLog(@"URL is %@",self.searchResult.storeURL);
+    
+}
 
 -(IBAction)close:(id)sender
 {
@@ -94,6 +96,12 @@
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
     
+}
+
+-(void)dealloc
+{
+    [self.imageView cancelImageRequestOperation];
+    NSLog(@"Dealloc %@",self);
 }
 
 
