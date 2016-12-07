@@ -123,6 +123,8 @@
     [self.view addSubview:controller.view];
     [self addChildViewController:controller];
     [controller didMoveToParentViewController:self];
+    
+    [self.searchBar resignFirstResponder];
 }
 
 -(NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
