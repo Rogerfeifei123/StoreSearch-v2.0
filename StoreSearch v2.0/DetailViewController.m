@@ -29,6 +29,8 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor=[UIColor clearColor];
+    
     //The UIEdgeInsetMake method is to decide which part of the image is going to be stretched,the four number is anticlockwise with (top/ left/ bottom/ right)the detail number decide the distance to the edge
     UIImage *image = [[UIImage imageNamed:@"PriceButton-1"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
     [self.priceButton setBackgroundImage:image forState:UIControlStateNormal];
@@ -45,6 +47,7 @@
     if (self.searchResult!=nil) {
         [self updateUI];
     }
+    
 }
 
 -(void)updateUI

@@ -48,6 +48,8 @@
     self.tableView.rowHeight=80;
     self.tableView.contentInset=UIEdgeInsetsMake(108, 0, 0, 0);
     
+    
+    
     UINib*cellNib=[UINib nibWithNibName:searchResultCellIdentifer bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:searchResultCellIdentifer];
     
