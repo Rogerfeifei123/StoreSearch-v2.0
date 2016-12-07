@@ -118,13 +118,11 @@
    
     SearchResult*result=_searchResults[indexPath.row];
     controller.searchResult=result;
-    controller.view.frame=self.view.bounds;
-    
-    [self.view addSubview:controller.view];
-    [self addChildViewController:controller];
-    [controller didMoveToParentViewController:self];
-    
-    [self.searchBar resignFirstResponder];
+    //self is equal to "DetailViewControlelr"
+    //controller-->"DetailViewController"
+    //parentViewController-->"SearchViewControler"
+    //The method means that the detailViewController present in the ParentViewControler(SearchViewController)
+    [controller presentInParentViewController:self];
 }
 
 -(NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath

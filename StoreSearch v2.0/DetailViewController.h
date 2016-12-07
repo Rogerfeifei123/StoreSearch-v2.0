@@ -12,4 +12,8 @@
 @interface DetailViewController : UIViewController
 
 @property(nonatomic,strong)SearchResult*searchResult;
+
+-(void)presentInParentViewController:(UIViewController*)parentViewController;
+-(void)dismissFromParentViewController;
+
 @end
