@@ -11,7 +11,7 @@
 #import "SearchResult.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
-@interface DetailViewController ()<UIGestureRecognizerDelegate>
+@interface DetailViewController ()<UIGestureRecognizerDelegate,CAAnimationDelegate>
 @property(weak,nonatomic)IBOutlet UIView*popupView;
 @property(weak,nonatomic)IBOutlet UIImageView*imageView;
 @property(weak,nonatomic)IBOutlet UILabel*nameLabel;
