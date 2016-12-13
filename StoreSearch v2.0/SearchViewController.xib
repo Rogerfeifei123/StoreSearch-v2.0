@@ -32,9 +32,7 @@
                         <outlet property="delegate" destination="-1" id="QQS-wp-VbS"/>
                     </connections>
                 </searchBar>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Zd-Kq-jbX">
-                    <frame key="frameInset" minY="64" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Zd-Kq-jbX">
                     <items>
                         <navigationItem id="ZfK-BL-4Fi">
                             <nil key="title"/>
@@ -57,6 +55,8 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="3Zd-Kq-jbX" firstAttribute="top" secondItem="jNM-Qk-r0q" secondAttribute="bottom" id="0EV-tr-2Ob"/>
+                <constraint firstItem="3Zd-Kq-jbX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7GQ-Cg-E14"/>
                 <constraint firstItem="jNM-Qk-r0q" firstAttribute="leading" secondItem="D9h-7J-UiD" secondAttribute="leading" id="C2U-GH-J1A"/>
                 <constraint firstAttribute="bottom" secondItem="D9h-7J-UiD" secondAttribute="bottom" id="Cjb-AP-Zmq"/>
                 <constraint firstItem="D9h-7J-UiD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ebu-g2-i22"/>
@@ -64,6 +64,9 @@
                 <constraint firstItem="jNM-Qk-r0q" firstAttribute="trailing" secondItem="D9h-7J-UiD" secondAttribute="trailing" id="WR1-CT-FAc"/>
                 <constraint firstItem="D9h-7J-UiD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZGC-4k-qJS"/>
                 <constraint firstAttribute="trailing" secondItem="jNM-Qk-r0q" secondAttribute="trailing" id="gff-eN-y5l"/>
+                <constraint firstAttribute="trailing" secondItem="3Zd-Kq-jbX" secondAttribute="trailing" id="guc-Qv-r7D"/>
+                <constraint firstItem="jNM-Qk-r0q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lTa-M0-qnJ"/>
+                <constraint firstAttribute="trailing" secondItem="jNM-Qk-r0q" secondAttribute="trailing" id="lWf-iS-8pE"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>

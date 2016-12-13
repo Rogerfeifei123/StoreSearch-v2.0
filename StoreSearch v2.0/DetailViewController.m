@@ -95,15 +95,27 @@
 
 -(IBAction)close:(id)sender
 {
-    [self dismissFromParentViewController];
+    [self dismissFromParentViewControllerAnimationType:DetailViewControllerAnimationTypeSlide];
     
 }
 
--(void)dismissFromParentViewController
+-(void)dismissFromParentViewControllerAnimationType:(DetailViewControllerAnimationType)animaitonType
 {
     [self willMoveToParentViewController:nil];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        if (animaitonType==DetailViewControllerAnimationTypeSlide) {
+            CGRect rect=self.view.bounds;
+            rect.origin.y +=rect.size.height;
+            self.view.frame=rect;
+        }else{
+            self.view.alpha=0.0f;
+        }
+    } completion:^(BOOL finished){
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }];
+    
 }
 
 //DetailViewControlelr (child)   SearchViewController(parent)

@@ -11,6 +11,7 @@
 #import "SearchResultTableViewCell.h"
 #import "SearchViewController.h"
 #import "DetailViewController.h"
+#import "LandScapeViewController.h"
 #import <AFNetworking.h>
 
  static NSString*const searchResultCellIdentifer=@"SearchResultCell";
@@ -28,6 +29,9 @@
     NSMutableArray*_searchResults;
     BOOL _isLoading;
     NSOperationQueue*_queue;
+    LandScapeViewController*_landScapeViewController;
+    UIStatusBarStyle _statusBarStyle;
+    __weak DetailViewController *_detailViewController;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,7 +48,7 @@
 {
     [super viewDidLoad];
     
-    
+    _statusBarStyle=UIStatusBarStyleDefault;
     self.tableView.rowHeight=80;
     self.tableView.contentInset=UIEdgeInsetsMake(108, 0, 0, 0);
     
@@ -66,6 +70,11 @@
 {
     [super didReceiveMemoryWarning];
     
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return _statusBarStyle;
 }
 
 #pragma mark - UITableViewDataSource
@@ -123,6 +132,7 @@
     //parentViewController-->"SearchViewControler"
     //The method means that the detailViewController present in the ParentViewControler(SearchViewController)
     [controller presentInParentViewController:self];
+    _detailViewController=controller;
 }
 
 -(NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -315,6 +325,61 @@
 {
     if (_searchResults!=nil) {
         [self performSearch];
+    }
+}
+
+#pragma mark - LandScape
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+        [self hideLandScapeViewWIthDuration:duration];
+    }else{
+        [self showLandScapeViewWithDuration:duration];
+    }
+}
+
+-(void)showLandScapeViewWithDuration:(NSTimeInterval)duration
+{
+    if (_landScapeViewController==nil) {
+        _landScapeViewController=[[LandScapeViewController alloc]initWithNibName:@"LandScapeViewController" bundle:nil];
+        
+        _landScapeViewController.view.frame=self.view.bounds;
+        _landScapeViewController.view.alpha=0.0f;
+        
+        [self.view addSubview:_landScapeViewController.view];
+        [self addChildViewController:_landScapeViewController];
+        
+        [UIView animateWithDuration:duration animations:^{
+            _landScapeViewController.view.alpha=1.0f;
+            _statusBarStyle=UIStatusBarStyleLightContent;
+            [self.searchBar resignFirstResponder];
+            [_detailViewController dismissFromParentViewControllerAnimationType:DetailViewControllerAnimationTypeFade];
+        } completion:^(BOOL finished){
+            [_landScapeViewController didMoveToParentViewController:self];
+            
+        }];
+        
+    }
+    
+}
+
+-(void)hideLandScapeViewWIthDuration:(NSTimeInterval)duration
+{
+    if (_landScapeViewController!=nil) {
+        [_landScapeViewController willMoveToParentViewController:nil];
+        
+        
+        [UIView animateWithDuration:duration animations:^{
+            _landScapeViewController.view.alpha=0.0f;
+            _statusBarStyle=UIStatusBarStyleDefault;
+        } completion:^(BOOL finished){
+            [_landScapeViewController.view removeFromSuperview];
+            [_landScapeViewController removeFromParentViewController];
+            _landScapeViewController=nil;
+            
+        }];
+        
     }
 }
 

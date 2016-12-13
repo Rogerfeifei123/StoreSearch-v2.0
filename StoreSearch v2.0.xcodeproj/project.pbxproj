@@ -155,9 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				44B98C151DE7D4E600C98677 /* SearchViewController.h */,
+				44B98C161DE7D4E600C98677 /* SearchViewController.m */,
 				44936D851DFD78C600108EB5 /* LandScapeViewController.h */,
 				44936D861DFD78C600108EB5 /* LandScapeViewController.m */,
-				44B98C161DE7D4E600C98677 /* SearchViewController.m */,
 				441808DD1DF6F28B002AD14E /* GradientView.h */,
 				441808DE1DF6F28B002AD14E /* GradientView.m */,
 				4468AEEF1DF4156700F9E109 /* DetailViewController.h */,
