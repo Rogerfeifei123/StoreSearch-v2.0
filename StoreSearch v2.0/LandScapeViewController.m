@@ -9,6 +9,8 @@
 #import "LandScapeViewController.h"
 
 @interface LandScapeViewController ()
+@property(nonatomic,weak)IBOutlet UIPageControl*pageControl;
+@property(nonatomic,weak)IBOutlet UIScrollView*scrollView;
 
 @end
 
