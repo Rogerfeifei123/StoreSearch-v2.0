@@ -19,6 +19,7 @@
  static NSString*const loadingCellIdentifer=@"LoadingCell";
 
 @interface SearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+
 @property(nonatomic,weak)IBOutlet UISearchBar*searchBar;
 @property(nonatomic,weak)IBOutlet UITableView*tableView;
 @property(nonatomic,weak)IBOutlet UISegmentedControl*segmentedControl;
@@ -343,6 +344,7 @@
 {
     if (_landScapeViewController==nil) {
         _landScapeViewController=[[LandScapeViewController alloc]initWithNibName:@"LandScapeViewController" bundle:nil];
+        _landScapeViewController.searchResult=_searchResults;
         
         _landScapeViewController.view.frame=self.view.bounds;
         _landScapeViewController.view.alpha=0.0f;
@@ -369,7 +371,7 @@
     if (_landScapeViewController!=nil) {
         [_landScapeViewController willMoveToParentViewController:nil];
         
-        
+        //the action(like the animations) before "BOOL finish" in first^{},the action in the second period in the next ^{}
         [UIView animateWithDuration:duration animations:^{
             _landScapeViewController.view.alpha=0.0f;
             _statusBarStyle=UIStatusBarStyleDefault;

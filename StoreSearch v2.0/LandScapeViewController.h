@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LandScapeViewController : UIViewController
-
+@property(nonatomic,strong) NSArray*searchResult;
 @end

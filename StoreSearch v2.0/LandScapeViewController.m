@@ -7,6 +7,7 @@
 //
 
 #import "LandScapeViewController.h"
+#import "SearchResult.h"
 
 @interface LandScapeViewController ()
 @property(nonatomic,weak)IBOutlet UIPageControl*pageControl;
@@ -15,10 +16,14 @@
 @end
 
 @implementation LandScapeViewController
+{
+    BOOL _firstTime;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.scrollView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"LandscapeBackground-1"]];
+    //self.scrollView.contentSize=CGSizeMake(1000, self.scrollView.bounds.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
