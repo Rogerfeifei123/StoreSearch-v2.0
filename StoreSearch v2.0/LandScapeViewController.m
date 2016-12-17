@@ -29,6 +29,7 @@
     return self;
 }
 
+//-(void)dealloc{}
 
 
 - (void)viewDidLoad {
@@ -81,21 +82,21 @@
     const CGFloat marginHorz=(itemWidth-buttonWidth)/2.0f;
     const CGFloat marginVert=(itemHeight-buttonHeight)/2.0f;
     
-    int index=0;
+    //int index=0;
     int row=0;
     int column=0;
     
     for (SearchResult*searchResult in self.searchResult) {
         UIButton*button=[UIButton buttonWithType:UIButtonTypeCustom];
         [button setBackgroundImage:[UIImage imageNamed:@"LandscapeButton-1"] forState:UIControlStateNormal];
-        [button setTitle:[NSString stringWithFormat:@"%d",index] forState:UIControlStateNormal];
+        //[button setTitle:[NSString stringWithFormat:@"%d",index] forState:UIControlStateNormal];
         [self downloadImageForSearchResult:searchResult andPlaceOnButton:button];
         
         button.frame=CGRectMake(x+marginHorz, 20.0f+row*itemHeight+marginVert,buttonWidth , buttonHeight);
         
         [self.scrollView addSubview:button];
         
-        index++;
+        //index++;
         row++;
         if (row==3) {
             row=0;
@@ -135,13 +136,7 @@
     self.scrollView.contentOffset=CGPointMake(self.scrollView.bounds.size.width*sender.currentPage, 0);
 }
 
--(void)dealloc
-{
-    NSLog(@"Declloc %@",self);
-    for (UIButton*button in self.scrollView.subviews) {
-        [button cancelImageRequestOperationForState:UIControlStateNormal];
-    }
-}
+
 
 
 
